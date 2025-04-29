@@ -1,9 +1,10 @@
 # IEEE - CIS Fraud Detection
-მოცემული კონკურსის მიზანია ონლაინ ტრანზაქციებში თაღლითობის აღმოჩენა. დატასეტი ძალიან დიდია (“500, 000 ტრანზაქცია) და დაბალანსებული არაა, თაღლითური ტრანზაქციები იშვიათია. ასევე, გამოწვწვებს გვიქმნის ბევრი გამოტოვებული მნიშვნეელობა და ანაონიმური ცვლადები, რაც Feature Engineering ს მნიშვნელოვანს ხდის. პრობლემის გადასაჭრელად გამოვცადე რამდენიმე მოდელი, რომელსაც შეუძლია ორობითი კლასიფიკაცია: Decision Tree, Random Forest და XGBoost. Logistic Regression ამ ზომის ინფორმაციაზე ძალიან ნელი აღმოჩნდა. ამ მოდელების სხვადასხვა პარამეტრებით გატესტვის შემდეგ, საუკეთესო XGBoost აღმოჩნდა.
+მოცემული კონკურსის მიზანია ონლაინ ტრანზაქციებში თაღლითობის აღმოჩენა. დატასეტი ძალიან დიდია (“500, 000 ტრანზაქცია) და დაბალანსებული არაა, თაღლითური ტრანზაქციები იშვიათია. ასევე, გამოწვწვებს გვიქმნის ბევრი გამოტოვებული მნიშვნეელობა და ანაონიმური ცვლადები, რაც Feature Engineering ს მნიშვნელოვანს ხდის. პრობლემის გადასაჭრელად გამოვცადე რამდენიმე მოდელი, რომელსაც შეუძლია ორობითი კლასიფიკაცია: Decision Tree, Random Forest, Ada Boost და XGBoost. Logistic Regression ამ ზომის ინფორმაციაზე ძალიან ნელი აღმოჩნდა. ამ მოდელების სხვადასხვა პარამეტრებით გატესტვის შემდეგ, საუკეთესო XGBoost აღმოჩნდა.
 
 ## რეპოზიტორიის სტრუქტურა
 - model-experiment-decision-tree.ipynb: სამუშაო ფაილი Decision Tree მოდელისთვის.
 - model-experiment-random-forest.ipynb: სამუშაო ფაილი Random Forest მოდელისთვის.
+- model-experiment-ada-boost.ipynb: სამუშაო ფაილი Ada Boost მოდელისთVის.
 - model-experiment-xgboost.ipynb: სამუშაო ფაილი XGBoost მოდელისთვის.
 - model-inference.ipynb: ამ ფაილიდან საუკეთესო მოდელი (XGBoost) ეშვება ტესტ სეტზე.
 - helper-classes.ipynb: დამხმარე კლასები, Feature Engineering და Preprocessing ისთვის.
@@ -15,7 +16,7 @@ Feature Engineering ხდება helper-classes.ipynb ის FeatureEngineeri
 Fetaure Selection-ისთვის, რადგან ჩვენს გამოყენებულ მოდელს ხის სტრუქტურა აქვთ, საშუალება გვაქვს, თითოეული გავუშვათ ორჯერ, SelectFromModel ის გამოყენებით, პირველი გაშვებისას გადავარჩევთ feature ებს და მეორე გაშვებისას მოდელს მხოლოდ დარჩენილებზე დავატრენინგებთ.
 
 ## Training
-გამოვცადე Decision Tree, Random Forest და XGBoost. თითოეულის შემთხვევაში გამოვცადე ჰიპერპარამეტრთა სხვადასხვა კომბინაცია, მაგალითად მაქსიმალური სიღრმე, ბოლო ორისთვის გაშვებული მთვლელების რაოდენობა. საბოლოოდ ავარჩიე XGBoost, რადგან trainig-ზე ყველაზე მაღალი შედეგი ჰქონდა და test set ზე ძალიან არ დაცემულა, შესაბამისად overfit არ გვქონია.
+გამოვცადე Decision Tree, Random Forest, Ada Boost და XGBoost. თითოეულის შემთხვევაში გამოვცადე ჰიპერპარამეტრთა სხვადასხვა კომბინაცია, მაგალითად მაქსიმალური სიღრმე, ბოლო ორისთვის გაშვებული მთვლელების რაოდენობა. საბოლოოდ ავარჩიე XGBoost, რადგან trainig-ზე ყველაზე მაღალი შედეგი ჰქონდა და test set ზე ძალიან არ დაცემულა, შესაბამისად overfit არ გვქონია. ტრენინგისთვის გამოვიყენე StratifiedKFold, სატრენინგო სეტი გავყავი 5 ნაწილად და თითოეულისთვის ხდება ვალიდაცია.
 
 ## Mlflow Tracking
 https://dagshub.com/gioeba/IEEE-CIS-Fraud-Detection.mlflow/#/experiments/0?searchFilter=&orderByKey=attributes.start_time&orderByAsc=false&startTime=ALL&lifecycleFilter=Active&modelVersionFilter=All+Runs&datasetsFilter=W10%3D
